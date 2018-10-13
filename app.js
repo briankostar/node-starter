@@ -6,6 +6,8 @@ let mongoose = require('mongoose');
 
 let router = require('./routes/index');
 
+require('./3rd-party')
+
 let app = express();
 
 app.use(logger('dev'));
@@ -20,7 +22,7 @@ let db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
     // we're connected!
-    console.log('MONGOOSE CONNECTED')
+    console.log('Mongoose Connected')
 });
 
 app.use('/', router.home);
