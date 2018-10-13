@@ -15,6 +15,22 @@ const get = (req, res) => {
     return res.json(req.sample)
 }
 
+const getAll = (req, res, next) => {
+    Sample.find({})
+        .then(samples => res.json(samples))
+        .catch(e => next(e));
+}
+
+function create(req, res, next) {
+    const sample = new Sample({
+        name: req.body.samplename
+    });
+
+    sample.save()
+        .then(savedSample => res.json(savedSample))
+        .catch(e => next(e));
+}
+
 const update = (req, res, next) => {
     const sample = req.sample;
     sample.name = req.body.samplename;
@@ -24,14 +40,7 @@ const update = (req, res, next) => {
         .catch(e => next(e));
 }
 
-const list = (req, res, next) => {
-    const { limit = 50, skip = 0 } = req.query;
-    sample.list({ limit, skip })
-        .then(samples => res.json(samples))
-        .catch(e => next(e));
-}
-
-const delete = (req, res, next) => {
+const remove = (req, res, next) => {
     const sample = req.sample;
     sample.remove()
         .then(deletedSample => res.json(deletedSample))
@@ -41,7 +50,8 @@ const delete = (req, res, next) => {
 module.exports = {
     load,
     get,
+    getAll,
+    create,
     update,
-    list,
-    delete
+    remove
 }
