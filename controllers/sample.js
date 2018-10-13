@@ -1,8 +1,8 @@
 let Sample = require('../models').sample
 
 // Define callback functions
-const load = () => {
-    Sample.get(id)
+const load = (req, res, next, id) => {
+    Sample.findOne({ _id: id })
         .then((sample) => {
             req.sample = sample //get sample from mongoose via id and attach to req
             return next()
