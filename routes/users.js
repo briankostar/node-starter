@@ -1,18 +1,19 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a user resource');
-});
-router.post('/', function (req, res) {
-  res.send('Got a POST request at /users')
-})
-router.put('/', function (req, res) {
-  res.send('Got a PUT request at /users')
-})
-router.delete('/', function (req, res) {
-  res.send('Got a DELETE request at /users')
-})
+router.route('/')
+  .get((req, res, next) => {
+    res.send('respond with a user resource');
+  })
+  .post((req, res) => {
+    res.send('Got a POST request at /users')
+  })
+  .put((req, res) => {
+    res.send('Got a PUT request at /users')
+  })
+  .delete((req, res) => {
+    res.send('Got a DELETE request at /users')
+  })
 
 module.exports = router;
