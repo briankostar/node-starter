@@ -9,8 +9,6 @@ var sampleSchema = new mongoose.Schema({
     }
 });
 
-console.log('sampleSchema', typeof sampleSchema, sampleSchema)
-
 /**
  * Add 
  * - pre-save hooks
@@ -24,4 +22,4 @@ sampleSchema.method({})
 //define model static methods
 sampleSchema.statics = {}
 
-module.exports = mongoose.model('Sample', SampleSchema);
+module.exports = mongoose.model('Sample', sampleSchema);
